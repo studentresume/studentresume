@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@google-cloud/documentai": "^5.11.0"
+    "@google-cloud/documentai": "^9.3.0"
   }
 }
