@@ -5,9 +5,7 @@ export default async function handler(req, res) {
     const client = new DocumentProcessorServiceClient({
       credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON),
     });
-
-    const name = `projects/${process.env.GOOGLE_PROJECT_ID}/locations/${process.env.GOOGLE_LOCATION}/processors/${process.env.GOOGLE_PROCESSOR_ID}`;
-
+    const name = `projects/${process.env.DOCAI_PROJECT_ID}/locations/${process.env.DOCAI_LOCATION}/processors/${process.env.DOCAI_PROCESSOR_ID}`;
     const request = {
       name,
       rawDocument: {
@@ -15,10 +13,8 @@ export default async function handler(req, res) {
         mimeType: "text/plain",
       },
     };
-
     const [result] = await client.processDocument(request);
     res.status(200).json(result.document || { message: "No document returned" });
-
   } catch (error) {
     console.error("DocAI error:", error);
     res.status(500).json({ error: error.message });
